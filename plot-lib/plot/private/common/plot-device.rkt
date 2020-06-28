@@ -600,7 +600,7 @@
       (define bottom-gap (* 1/2 baseline))
       (define baseline-skip (+ label-y-size baseline))
 
-      (define max-label-x-size (apply max (map (λ ([label : String]) (get-text-width label)) labels)))
+      (define max-label-x-size (apply max 0 (map (λ ([label : String]) (get-text-width label)) labels)))
       (define labels-x-size (+ max-label-x-size horiz-gap))
 
       (define draw-y-size (max 0 (- label-y-size baseline)))

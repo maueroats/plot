@@ -61,7 +61,7 @@
                    [(sum-ws)  (sum ws)]
                    [(ws)  (map (λ ([w : Real]) (fl (/ w sum-ws))) ws)]
                    [(h)  (fl h)]
-                   [(max-dist)  (apply max (map (λ ([w : Flonum]) (weight-max-dist w h)) ws))]
+                   [(max-dist)  (apply max 0.0 (map (λ ([w : Flonum]) (weight-max-dist w h)) ws))]
                    [(ws)  (list->vector ws)])
        (define c (/ 1.0 (* (flsqrt pi) h)))
        ;; The range of non-zero KDE values

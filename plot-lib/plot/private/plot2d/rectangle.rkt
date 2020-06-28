@@ -311,6 +311,8 @@
                         ...)
       cat-vals)
     (let ([ys  (map (λ ([y : (U #f (Sequenceof Real))]) (if y (sequence->list y) empty)) ys)])
+      (cond [(empty? ys) (raise-argument-error 'stacked-histogram "nonempty sequence of categories and values" 0)]
+            [else
       (define yss (map cumulative-sum ys))
       (define y-ivlss (for/list : (Listof (Listof ivl)) ([ys  (in-list yss)])
                         (for/list : (Listof ivl) ([y1  (in-list ys)] [y2  (in-list (rest ys))])
@@ -330,4 +332,4 @@
          #:gap gap #:skip skip #:invert? invert?
          #:color color #:style style #:line-color line-color #:line-width line-width
          #:line-style line-style #:alpha alpha #:label label
-         #:add-ticks? add-ticks? #:far-ticks? far-ticks?)))))
+         #:add-ticks? add-ticks? #:far-ticks? far-ticks?))]))))

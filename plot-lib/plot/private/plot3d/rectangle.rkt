@@ -282,6 +282,8 @@
                         ...)
       cat-vals)
     (let ([zs  (map (λ ([z : (U #f (Sequenceof Real))]) (if z (sequence->list z) empty)) zs)])
+      (cond [(empty? zs) (raise-argument-error 'stacked-histogram "nonempty sequence of categories and values" 0)]
+            [else
       (define zss (map cumulative-sum zs))
       (define z-ivlss (for/list : (Listof (Listof ivl)) ([zs  (in-list zss)])
                         (for/list  : (Listof ivl) ([z1  (in-list zs)]
@@ -304,4 +306,4 @@
          #:color color #:style style #:line-color line-color #:line-width line-width
          #:line-style line-style #:alpha alpha #:label label
          #:add-x-ticks? add-x-ticks? #:add-y-ticks? add-y-ticks?
-         #:x-far-ticks? x-far-ticks? #:y-far-ticks? y-far-ticks?)))))
+         #:x-far-ticks? x-far-ticks? #:y-far-ticks? y-far-ticks?))]))))

@@ -116,7 +116,7 @@
          (match-define (vector dx dy) dv)
          (values x y dx dy (atan2 dy dx) (sqrt (+ (sqr dx) (sqr dy))))))
      
-     (cond [(empty? xs)  empty]
+     (cond [(or (empty? dxs) (empty? dys))  empty] ;; type-checker appeasement
            [else (define box-x-size (/ (- x-max x-min) samples))
                  (define box-y-size (/ (- y-max y-min) samples))
                  

@@ -131,7 +131,7 @@
          (match-define (vector dx dy dz) dv)
          (values (vector x y z) dx dy dz (vnormalize dv) (vmag dv))))
      
-     (cond [(empty? vs)  empty]
+     (cond [(or (empty? dxs) (empty? dys) (empty? dzs))  empty] ;; typechecker appeasement
            [else (define box-x-size (/ (- x-max x-min) samples))
                  (define box-y-size (/ (- y-max y-min) samples))
                  (define box-z-size (/ (- z-max z-min) samples))

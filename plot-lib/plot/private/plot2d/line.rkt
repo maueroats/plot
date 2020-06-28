@@ -381,7 +381,8 @@
        (define n (length xs))
        (define sd (stddev xs ws))
        (define h (max 1e-308
-                      (* 1e-14 (apply max (map abs (filter rational? xs))))
+                      ; verify magic 1e-308 number used in impossible case that xs is empty?
+                      (* 1e-14 (apply max 1e-308 (map abs (filter rational? xs))))
                       (* bw-adjust 1.06 sd (assert (expt n -0.2) real?))))
        (define-values (f fx-min fx-max) (kde xs h ws))
        (let ([x-min  (if x-min x-min fx-min)]

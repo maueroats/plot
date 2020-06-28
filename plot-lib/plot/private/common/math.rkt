@@ -616,23 +616,23 @@
 (define (rect-contains? r v)
   (vector-andmap ivl-contains? r v))
 
-(: rect-meet2 (-> Rect Rect Rect))
+(:: rect-meet2 (-> Rect Rect Rect))
 (define (rect-meet2 r1 r2)
   (vector-map ivl-meet2 r1 r2))
 
 (:: rect-meet (-> Rect * Rect))
 (define (rect-meet . rs)
-  (define n (apply max (map vector-length rs)))
+  (define n (apply max 0 (map vector-length rs)))
   (for/fold ([res  (unknown-rect n)]) ([r  (in-list rs)])
     (rect-meet2 res r)))
 
-(: rect-join2 (-> Rect Rect Rect))
+(:: rect-join2 (-> Rect Rect Rect))
 (define (rect-join2 r1 r2)
   (vector-map ivl-join2 r1 r2))
 
 (:: rect-join (-> Rect * Rect))
 (define (rect-join . rs)
-  (define n (apply max (map vector-length rs)))
+  (define n (apply max 0 (map vector-length rs)))
   (for/fold ([res  (empty-rect n)]) ([r  (in-list rs)])
     (rect-join2 res r)))
 

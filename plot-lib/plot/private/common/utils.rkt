@@ -32,9 +32,9 @@
          (sequence-head-vector name v n))
        (sequence->list vs)))
 
-(: cumulative-sum (-> (Listof Real) (Listof Real)))
+(: cumulative-sum (-> (Listof Real) (List* Real (Listof Real))))
 (define (cumulative-sum xs)
-  (reverse (foldl (λ ([x : Real] [xs : (Listof Real)])
+  (reverse (foldl (λ ([x : Real] [xs : (Listof Real)]) : (List* Real (Listof Real))
                     (cons (+ x (first xs)) xs))
                   '(0)
                   xs)))

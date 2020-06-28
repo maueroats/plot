@@ -114,7 +114,7 @@
          (flvector (fl/ x m) (fl/ y m) (fl/ z m))
          default-normal)]))
 
-(: flv3-center (-> (Listof FlVector) FlVector))
+(: flv3-center (-> (List* FlVector (Listof FlVector)) FlVector))
 (define (flv3-center vs)
   (define xs (map (λ ([v : FlVector]) (flvector-ref v 0)) vs))
   (define ys (map (λ ([v : FlVector]) (flvector-ref v 1)) vs))
